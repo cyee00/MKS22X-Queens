@@ -4,6 +4,11 @@ public class QueenBoard{
   //Constructor
   public QueenBoard(int size){
     board = new int[size][size];
+    for (int i=0;i<board.length;i++){
+      for (int n=0;n<board[i].length;n++){
+        board[i][n]=0;
+      }
+    }
   }
 
   /**
@@ -19,7 +24,19 @@ public class QueenBoard{
   *excludes the character up to the *)
   */
   public String toString(){
-    return "";
+    String ans="";
+    for (int i=0;i<board.length;i++){
+      for (int n=0;n<board[i].length;n++){
+        if (board[i][n]>-1){
+          ans+="_";
+        } else if(board[i][n]==-1){
+          ans+="Q";
+        }
+        ans+=" ";
+      }
+      ans+="\n";
+    }
+    return ans;
   }
 
 
@@ -38,5 +55,10 @@ public class QueenBoard{
   */
   public int countSolutions(){
     return 0;
+  }
+
+  public static void main(String[]args){
+    QueenBoard qb = new QueenBoard(3);
+    System.out.println(qb.toString());
   }
 }
