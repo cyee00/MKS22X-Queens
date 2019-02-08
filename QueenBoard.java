@@ -49,6 +49,22 @@ public class QueenBoard{
     return true;
   }
 
+  private boolean maxQueens(int[][] nums){
+    int count = 0;
+    for (int r=0;r<nums.length;r++){
+      for (int c=0;c<nums[r].length;c++){
+        if (nums[r][c]==-1){
+          count++;
+          c=nums[r].length;
+        }
+      }
+      if (count==nums.length){
+        return true;
+      }
+    }
+    if (count==nums.length) return true;
+    return false;
+  }
   /**
   *@return false when the board is not solveable and leaves the board filled with zeros;
   *        true when the board is solveable, and leaves the board in a solved state
@@ -63,7 +79,17 @@ public class QueenBoard{
   *@throws IllegalStateException when the board starts with any non-zero value
   */
   public int countSolutions(){
-    return 0;
+    int ans=0;
+    if (board[0][0]!=0){
+      throw new IllegalStateException();
+    } else if (solve()){
+      for (int r=0;r<board.length;r++){
+        for (int c=0;c<board[r].length;c++){
+        //  if (board[r][c]){}
+        }
+      }
+    }
+    return ans;
   }
 
   public static void main(String[]args){
