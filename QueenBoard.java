@@ -39,6 +39,15 @@ public class QueenBoard{
     return ans;
   }
 
+  public boolean addQueen(int r, int c){
+    board[r][c]=-1;
+    return true;
+  }
+
+  public boolean removeQueen(int r,int c){
+    board[r][c]=0;
+    return true;
+  }
 
   /**
   *@return false when the board is not solveable and leaves the board filled with zeros;
@@ -59,6 +68,9 @@ public class QueenBoard{
 
   public static void main(String[]args){
     QueenBoard qb = new QueenBoard(3);
+    qb.addQueen(0,0);
+    qb.addQueen(2,2);
+    qb.removeQueen(0,0);
     System.out.println(qb.toString());
   }
 }
