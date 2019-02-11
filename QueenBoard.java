@@ -71,6 +71,7 @@ public class QueenBoard{
   *@throws IllegalStateException when the board starts with any non-zero value
   */
   public boolean solve(){
+    if (board[0][0]!=0) throw new IllegalStateException(); //checking for non-zero value
     return true;
   }
 
