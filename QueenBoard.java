@@ -130,6 +130,9 @@ public class QueenBoard{
     if (board[0][0]!=0){
       throw new IllegalStateException();
     }
+    if (board.length==2||board.length==3){//exception for boards of size 2 or 3 (Source: Wikipedia)
+      return 0;
+    }
       int ans=countSolutions(0);
       //clear the board
       for (int r=0;r<board.length;r++){
@@ -154,6 +157,8 @@ public class QueenBoard{
   }
 
   public static void main(String[]args){
+    QueenBoard qb1 = new QueenBoard(1);
+      QueenBoard qb3 = new QueenBoard(3);
     QueenBoard qb7 = new QueenBoard(7);
     QueenBoard qb8 = new QueenBoard(8);
     QueenBoard qb10 = new QueenBoard(10);
@@ -163,6 +168,8 @@ public class QueenBoard{
     qb.removeQueen(0,0);
     qb.removeQueen(1,1);
     System.out.println(qb.toString());*/
+    System.out.println(""+qb1.countSolutions());
+    System.out.println(""+qb3.countSolutions());
     System.out.println(""+qb7.countSolutions());
     System.out.println(""+qb8.countSolutions());
     System.out.println(""+qb10.countSolutions());
