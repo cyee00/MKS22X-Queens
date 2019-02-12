@@ -81,14 +81,14 @@ public class QueenBoard{
   private boolean solve (int col){
     if (col < board.length) return true; //reached end of board, therefore this is a solution
     for (int r=0;r<board.length;r++){
-      if (addQueen(r,col)){
-        if (solveQueen(col+1)){
+      if (addQueen(r,col)){ // if it's possible to add queen at this spot
+        if (solveQueen(col+1)){ //if it's possible to add queen at next column
           return true;
         }
-        removeQueen();
+        removeQueen(); //else backtrack and remove most recent queen
       }
     }
-    return false;
+    return false;//nothing worked so it's not a solution
   }
 
   /**
