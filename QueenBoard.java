@@ -154,13 +154,17 @@ public class QueenBoard{
   }
 
   public static void main(String[]args){
-    QueenBoard qb = new QueenBoard(7);
+    QueenBoard qb7 = new QueenBoard(7);
+    QueenBoard qb8 = new QueenBoard(8);
+    QueenBoard qb10 = new QueenBoard(10);
     /*qb.addQueen(0,0);
     qb.addQueen(2,2);
     qb.addQueen(2,2);
     qb.removeQueen(0,0);
     qb.removeQueen(1,1);
     System.out.println(qb.toString());*/
-    System.out.println(""+qb.countSolutions());
+    System.out.println(""+qb7.countSolutions());
+    System.out.println(""+qb8.countSolutions());
+    System.out.println(""+qb10.countSolutions());
   }
 }
