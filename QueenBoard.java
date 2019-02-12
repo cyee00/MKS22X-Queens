@@ -39,10 +39,23 @@ public class QueenBoard{
     return ans;
   }
 
+  private void mark(int r,int c){
+    for (int i=1;i<board.length-c;i++){
+      board[r][c+i]++;//add a mark
+      if (i<board.length-r){
+        board[r+i][c+i]++;
+      }
+      if (i<=r){
+        board[r-i][c+i]++;
+      }
+    }
+  }
+
   private boolean addQueen(int r, int c){
     if (r<board.length&&c<board.length){
       if (board[r][c]!=0) return false; //false if there's already a queen there or it's marked off
       board[r][c]=-1;
+      mark(r,c); //mark off threatened squares
     }
     return true;
   }
@@ -103,7 +116,7 @@ public class QueenBoard{
   public int countSolutions(){
     if (board[0][0]!=0){
       throw new IllegalStateException();
-    } else {
+    }
       int ans=countSolutions(0);
       //clear the board
       for (int r=0;r<board.length;r++){
@@ -112,7 +125,6 @@ public class QueenBoard{
         }
       }
       return ans;
-    }
   }
 
   private int countSolutions(int col){
