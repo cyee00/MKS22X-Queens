@@ -72,7 +72,16 @@ public class QueenBoard{
   */
   public boolean solve(){
     if (board[0][0]!=0) throw new IllegalStateException(); //checking for non-zero value
-    return true;
+    return solve(0); //call to recursive fxn
+  }
+
+  private boolean solve (int col){
+    if (col < board.length) return true; //reached end of board, therefore this is a solution
+    for (int r=0;r<board[col].length;r++){
+      if (addQueen(r,col)){
+
+      }
+    }
   }
 
   /**
