@@ -60,10 +60,23 @@ public class QueenBoard{
     return true;
   }
 
+  private void unmark(int r,int c){
+    for (int i=1;i<board.length-c;i++){
+      board[r][c+i]--;//remove a mark
+      if (i<board.length-r){
+        board[r+i][c+i]--;
+      }
+      if (i<=r){
+        board[r-i][c+i]--;
+      }
+    }
+  }
+
   private boolean removeQueen(int r,int c){
     if (r<board.length&&c<board.length){
       if (board[r][c]!=-1) return false; //false if there's no queen there
       board[r][c]=0;
+      unmark(r,c);
     }
     return true;
   }
