@@ -99,24 +99,37 @@ public class QueenBoard{
   *@throws IllegalStateException when the board starts with any non-zero value
   */
   public int countSolutions(){
-    int ans=0;
     if (board[0][0]!=0){
       throw new IllegalStateException();
-    } else if (solve()){
+    } else {
+      //clear the board
       for (int r=0;r<board.length;r++){
         for (int c=0;c<board[r].length;c++){
-        //  if (board[r][c]){}
+          board[r][c]=0;
         }
       }
+      return countSolutions(0);
+    }
+  }
+
+  public int countSolutions(int col){
+    int ans=0;
+    for (int r=0;r<board.length;r++){
+      if (addQueen(r,col)){//try to add queen at this spot, if possible then
+        ans+=countSolutions(col+1); //try for the next column
+      }
+      removeQueen(r,col);//else backtrack, remove most recent queen
     }
     return ans;
   }
 
   public static void main(String[]args){
-    QueenBoard qb = new QueenBoard(3);
+    QueenBoard qb = new QueenBoard(5);
     qb.addQueen(0,0);
     qb.addQueen(2,2);
+    qb.addQueen(2,2);
     qb.removeQueen(0,0);
+    qb.removeQueen(1,1);
     System.out.println(qb.toString());
   }
 }
