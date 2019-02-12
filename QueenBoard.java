@@ -39,7 +39,7 @@ public class QueenBoard{
     return ans;
   }
 
-  public boolean addQueen(int r, int c){
+  private boolean addQueen(int r, int c){
     if (r<board.length&&c<board.length){
       if (board[r][c]!=0) return false; //false if there's already a queen there or it's marked off
       board[r][c]=-1;
@@ -47,7 +47,7 @@ public class QueenBoard{
     return true;
   }
 
-  public boolean removeQueen(int r,int c){
+  private boolean removeQueen(int r,int c){
     if (r<board.length&&c<board.length){
       if (board[r][c]!=-1) return false; //false if there's no queen there
       board[r][c]=0;
@@ -55,6 +55,7 @@ public class QueenBoard{
     return true;
   }
 
+  /*
   private boolean maxQueens(int[][] nums){
     int count = 0;
     for (int r=0;r<nums.length;r++){
@@ -70,7 +71,8 @@ public class QueenBoard{
     }
     if (count==nums.length) return true;
     return false;
-  }
+  }*/
+
   /**
   *@return false when the board is not solveable and leaves the board filled with zeros;
   *        true when the board is solveable, and leaves the board in a solved state
@@ -102,19 +104,22 @@ public class QueenBoard{
     if (board[0][0]!=0){
       throw new IllegalStateException();
     } else {
+      int ans=countSolutions(0);
       //clear the board
       for (int r=0;r<board.length;r++){
         for (int c=0;c<board[r].length;c++){
           board[r][c]=0;
         }
       }
-      return countSolutions(0);
+      return ans;
     }
   }
 
-  public int countSolutions(int col){
+  private int countSolutions(int col){
     int ans=0;
-    for (int r=0;r<board.length;r++){
+    if (col>=board.length){
+      return 1; //if you reach end of row, add 1 to # of solutions
+    } else for (int r=0;r<board.length;r++){
       if (addQueen(r,col)){//try to add queen at this spot, if possible then
         ans+=countSolutions(col+1); //try for the next column
       }
@@ -124,12 +129,13 @@ public class QueenBoard{
   }
 
   public static void main(String[]args){
-    QueenBoard qb = new QueenBoard(5);
-    qb.addQueen(0,0);
+    QueenBoard qb = new QueenBoard(7);
+    /*qb.addQueen(0,0);
     qb.addQueen(2,2);
     qb.addQueen(2,2);
     qb.removeQueen(0,0);
     qb.removeQueen(1,1);
-    System.out.println(qb.toString());
+    System.out.println(qb.toString());*/
+    System.out.println(""+qb.countSolutions());
   }
 }
