@@ -40,7 +40,10 @@ public class QueenBoard{
   }
 
   public boolean addQueen(int r, int c){
-    board[r][c]=-1;
+    if (r<board.length&&c<board.length){
+      if (board[r][c]!=0) return false; //false if there's already a queen there or it's marked off
+      board[r][c]--;
+    }
     return true;
   }
 
