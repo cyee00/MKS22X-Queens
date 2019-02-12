@@ -80,11 +80,15 @@ public class QueenBoard{
 
   private boolean solve (int col){
     if (col < board.length) return true; //reached end of board, therefore this is a solution
-    for (int r=0;r<board[col].length;r++){
+    for (int r=0;r<board.length;r++){
       if (addQueen(r,col)){
-
+        if (solveQueen(col+1)){
+          return true;
+        }
+        removeQueen();
       }
     }
+    return false;
   }
 
   /**
