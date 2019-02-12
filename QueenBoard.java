@@ -42,13 +42,16 @@ public class QueenBoard{
   public boolean addQueen(int r, int c){
     if (r<board.length&&c<board.length){
       if (board[r][c]!=0) return false; //false if there's already a queen there or it's marked off
-      board[r][c]--;
+      board[r][c]=-1;
     }
     return true;
   }
 
   public boolean removeQueen(int r,int c){
-    board[r][c]=0;
+    if (r<board.length&&c<board.length){
+      if (board[r][c]!=-1) return false; //false if there's no queen there
+      board[r][c]=0;
+    }
     return true;
   }
 
@@ -82,10 +85,10 @@ public class QueenBoard{
     if (col < board.length) return true; //reached end of board, therefore this is a solution
     for (int r=0;r<board.length;r++){
       if (addQueen(r,col)){ // if it's possible to add queen at this spot
-        if (solveQueen(col+1)){ //if it's possible to add queen at next column
+        if (solve(col+1)){ //if it's possible to add queen at next column
           return true;
         }
-        removeQueen(); //else backtrack and remove most recent queen
+        removeQueen(r,col); //else backtrack and remove most recent queen
       }
     }
     return false;//nothing worked so it's not a solution
